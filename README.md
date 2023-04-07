@@ -8,7 +8,7 @@ One Trip Home (OTH) is a booking website that offers travelers a seamless and st
 ## Table of contents
 
 - [Introduction](#introduction)
-  - [What is ZipHired](#what-is-one-trip-home)
+  - [What is One Trip Home (OTH)](#what-is-one-trip-home)
 - [Overview](#overview)
   - [Screenshot](#screenshot)
   - [Links](#links)
