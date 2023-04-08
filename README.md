@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# <h1 align="center"> One Trip Home | Homes Vacation & Condo Rentals. </h1>
 
-## Getting Started
+## Introducation
 
-First, run the development server:
+### What is One Trip Home
+One Trip Home (OTH) is a booking website that offers travelers a seamless and stress-free way to find and book vacation rental homes for their next trip. Similar to Airbnb, OTH connects travelers with property owners who offer a wide range of unique and comfortable accommodations for a variety of travel purposes. Whether you're looking for a beachfront villa, a mountain cabin, or a cozy city apartment, OTH has you covered with a vast selection of properties to choose from. With an easy-to-use platform and a team of dedicated customer support specialists, OTH makes it easy to plan your perfect vacation and create unforgettable memories with your loved ones.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Table of contents
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Introduction](#introduction)
+  - [What is One Trip Home (OTH)](#what-is-one-trip-home)
+- [Overview](#overview)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
+- [Copyrights](#copyrights)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+### Screenshot / Videos
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### Links
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Live Site URL: ()
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## My process
 
-## Deploy on Vercel
+- YouTube
+- StackOverFlow
+- Google
+- ChatGPT
+- Discord
+- Github
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Built with
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Next JS 13
+- MERN (MongoDB, Express, React, Node)
+- TailwindCss
+- Vercel
+
+### What I learned
+
+During the development of this website, I gained several valuable insights and skills. Here are some of what I learned:
+
+
+### Continued development
+
+The development of the website is finised but at the same time it's not because overtime technologies that I used to built this app will release new features and I need to update the app, so that the user's can surf freely.
+
+### Useful resources
+ 
+
+## Author
+
+- Website - [Earl Villapaz](https://iearl-v.me/)
+- Graphics Site - [SOON](Soon to have)
+- Twitter - [@itseaaarloffcl](https://www.twitter.com/itseaaarloffcl)
+
+
+## Acknowledgments
+
+Thanks to StackOverFlow, Github & YouTube they solved some of the problems that I faced while still developing my DALL-E 2 CLONE.
+
+## Copyrights
+
+- Copyright Ⓒ 2023 Earl A. Villapaz. All Rights Reserved **License**.
+
