@@ -2,6 +2,7 @@ import { Poppins } from 'next/font/google';
 
 import './globals.css';
 import Navbar from './components/Navbar/Navbar';
+import Modals from './components/models/Modals';
 
 
 export const metadata = {
@@ -22,8 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={fonts.className}>
+        <Modals isOpen />
         <Navbar />
-        
         {children}
       </body>
     </html>
