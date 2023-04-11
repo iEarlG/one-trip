@@ -26,8 +26,8 @@ const Button: React.FC<ButtonProps> = ({
             onClick={onClick}
             disabled={disable}
         >
-            {label}
             {Icon && <Icon size={24} className="abosolute gap-3 left-4" />}
+            {label}
         </button>
     );
 }

@@ -13,14 +13,14 @@ interface ModalsProps {
     title?: string;
     body?: React.ReactElement;
     footer?: React.ReactElement;
-    actionLabel?: string;
     disable?: boolean;
+    actionLabel: string;
     secondaryAction?: () => void;
-    secondaryLabel?: string;
+    secondaryActionLabel?: string;
 }
 
 const Modals: React.FC<ModalsProps> = ({
-    isOpen, onClose, onSubmit, title, body, footer, actionLabel, disable, secondaryAction, secondaryLabel,
+    isOpen, onClose, onSubmit, title, body, footer, actionLabel, disable, secondaryAction, secondaryActionLabel,
 }) => {
     const [showModals, setShowModals] = useState(isOpen);
 
@@ -85,7 +85,20 @@ const Modals: React.FC<ModalsProps> = ({
                             {/* FOOTER */}
                             <div className="flex flex-col gap-2 p-6">
                                 <div className="flex flex-row items-center gap-4 w-full">
-                                    <Button label="Button" />
+                                    {secondaryAction && secondaryActionLabel && (
+
+                                        <Button 
+                                            outline 
+                                            disable={disable} 
+                                            label={secondaryActionLabel} 
+                                            onClick={handleSecondaryAction} 
+                                        />
+                                    )}
+                                        <Button 
+                                            disable={disable} 
+                                            label={actionLabel} 
+                                            onClick={handleSubmitted} 
+                                        />
                                 </div>
                             </div>
                         </div>
