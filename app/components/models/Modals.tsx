@@ -74,7 +74,7 @@ const Modals: React.FC<ModalsProps> = ({
                                     <IoMdClose size={18} />
                                 </button>
 
-                                <div className="text-lg font-semibold">{title}</div>
+                                <div className="text-lg font-medium">{title}</div>
                             </div>
                             
                             {/* BODY */}
@@ -100,6 +100,7 @@ const Modals: React.FC<ModalsProps> = ({
                                             onClick={handleSubmitted} 
                                         />
                                 </div>
+                                {footer}
                             </div>
                         </div>
                     </div>

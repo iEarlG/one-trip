@@ -2,7 +2,8 @@ import { Poppins } from 'next/font/google';
 
 import './globals.css';
 import Navbar from './components/Navbar/Navbar';
-import Modals from './components/models/Modals';
+import RegisterModals from './components/models/RegisterModals';
+import ToasterProvider from './components/providers/ToasterProvider';
 
 
 export const metadata = {
@@ -23,7 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={fonts.className}>
-        <Modals isOpen actionLabel="Submit" />
+        <ToasterProvider  />
+        <RegisterModals />
         <Navbar />
         {children}
       </body>
