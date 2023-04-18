@@ -59,7 +59,7 @@ const RegisterModals = () => {
             />
             <Inputs 
                 id="name" 
-                label="First & Last Name"
+                label="Full name"
                 disable={isLoading}
                 register={register}
                 errors={errors}
