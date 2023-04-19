@@ -4,6 +4,8 @@ import './globals.css';
 import Navbar from './components/Navbar/Navbar';
 import RegisterModals from './components/models/RegisterModals';
 import ToasterProvider from './components/providers/ToasterProvider';
+import LoginModals from './components/models/LoginModals';
+import getCurrentUsers from './actions/getCurrentUsers';
 
 
 export const metadata = {
@@ -16,17 +18,19 @@ const fonts = Poppins({
   weight: ["400", "500", "700"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const currentUsers = await getCurrentUsers();
   return (
     <html lang="en">
       <body className={fonts.className}>
         <ToasterProvider  />
+        <LoginModals />
         <RegisterModals />
-        <Navbar />
+        <Navbar currentUsers={currentUsers} />
         {children}
       </body>
     </html>
