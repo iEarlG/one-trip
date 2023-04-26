@@ -13,8 +13,10 @@ import Headings from "../Headings";
 import Inputs from "../Input/Inputs";
 import Button from "../Button";
 import { signIn } from "next-auth/react";
+import useLoginModals from "@/app/hooks/useLoginModals";
 
 const RegisterModals = () => {
+    const loginModal = useLoginModals();
     const registerModal = useRegisterModals();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -42,6 +44,11 @@ const RegisterModals = () => {
                 setIsLoading(false);
             })
     }
+
+    const toggleBtn = useCallback(() => {
+        loginModal.onOpen();
+        registerModal.onClosed();
+    }, [loginModal, registerModal]);
 
     const signupContents = (
         <div className="flex flex-col gap-4">
@@ -84,10 +91,10 @@ const RegisterModals = () => {
             <Button outline label="Login with Google" icon={FcGoogle} onClick={() => signIn('google')} />
             <Button outline label="Login with Github" icon={AiFillGithub} onClick={() => signIn('github')} />
 
-            <div className="text-neutral-500 font-light text-center mt-4">
+            <div className="text-neutral-500 font-normal text-center mt-4">
                 <div className="flex flex-row items-center gap-2 justify-center">
                     <div>Already have an OTH account?</div>
-                    <div className="text-neutral-800 cursor-pointer hover:underline" onClick={registerModal.onClosed}>Log in</div>
+                    <div className="text-neutral-800 cursor-pointer hover:underline" onClick={toggleBtn}>Log in</div>
                 </div>
             </div>
         </div>

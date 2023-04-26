@@ -24,10 +24,17 @@ const UserMenu: React.FC<UserMenuProps> = ({
     const toggleMenu = useCallback(() => {
         setIsOpen((index) => !index)
     }, [])
+
+    const onRent = useCallback(() => {
+        if(!currentUsers) { 
+            return loginModal.onOpen();
+        }
+
+    }, [currentUsers, loginModal]);
     return ( 
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
-                <div onClick={() => {}} className="hidden md:block text-sm px-4 rounded-full hover:bg-neutral-100 
+                <div onClick={onRent} className="hidden md:block text-sm px-4 rounded-full hover:bg-neutral-100 
                     transition cursor-pointer py-3 font-medium uppercase">OTH is your place
                 </div>
 

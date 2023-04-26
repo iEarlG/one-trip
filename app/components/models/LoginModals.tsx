@@ -52,6 +52,11 @@ const LoginModals = () => {
         })
     }
 
+    const toggleBtn = useCallback(() => {
+        loginModal.onClosed();
+        registerModal.onOpen();
+    }, [loginModal, registerModal]);
+
     const signupContents = (
         <div className="flex flex-col gap-4">
             <Headings
@@ -93,10 +98,10 @@ const LoginModals = () => {
             <Button outline label="Login with Google" icon={FcGoogle} onClick={() => signIn('google')} />
             <Button outline label="Login with Github" icon={AiFillGithub} onClick={() => signIn('github')} />
 
-            <div className="text-neutral-500 font-light text-center mt-4">
+            <div className="text-neutral-500 font-normal text-center mt-4">
                 <div className="flex flex-row items-center gap-2 justify-center">
-                    <div>Dont have an account yet?</div>
-                    <div className="text-neutral-800 cursor-pointer hover:underline" onClick={loginModal.onClosed}>Signup</div>
+                    <div>Dont have an OTH account yet?</div>
+                    <div className="text-neutral-800 cursor-pointer hover:underline" onClick={toggleBtn}>Create an account</div>
                 </div>
             </div>
         </div>
