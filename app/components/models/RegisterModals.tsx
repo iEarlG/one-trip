@@ -8,12 +8,12 @@ import toast from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import useRegisterModals from "@/app/hooks/useRegisterModals";
+import useLoginModals from "@/app/hooks/useLoginModals";
 import Modals from "./Modals";
 import Headings from "../Headings";
 import Inputs from "../Input/Inputs";
 import Button from "../Button";
 import { signIn } from "next-auth/react";
-import useLoginModals from "@/app/hooks/useLoginModals";
 
 const RegisterModals = () => {
     const loginModal = useLoginModals();
