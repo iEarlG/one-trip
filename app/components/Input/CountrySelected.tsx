@@ -1,6 +1,7 @@
 "use client";
 
 import Select from 'react-select';
+import ReactCountryFlag from 'react-country-flag';
 
 import useCountries from '@/app/hooks/useCountries';
 
@@ -17,10 +18,8 @@ interface CountrySelectedProps {
     onChange: (value: CountrySelectedValue) => void;
 }
 
-const CountrySelected: React.FC<CountrySelectedProps> = ({
-    value,
-    onChange,
-}) => {
+const CountrySelected: React.FC<CountrySelectedProps> = ({  value, onChange, }) => 
+{
     const { getAll } = useCountries();
     return ( 
         <div>
@@ -32,7 +31,12 @@ const CountrySelected: React.FC<CountrySelectedProps> = ({
                 // onChange={(value) => onChange(value as CountrySelectedValue)} this is not working i dont know why!!
                 formatOptionLabel={(option: any) => (
                     <div className="flex flex-row items-center gap-3">
-                        <div>{option.flag}</div>
+                        <ReactCountryFlag 
+                            className="w-[1rem] h-[1rem]"
+                            countryCode={option.value}
+                            aria-label={option.label}
+                            svg
+                        />
                         <div>{option.label}, 
                             <span className="text-neutral-800 ml-1">{option.region}, </span>
                         </div>
