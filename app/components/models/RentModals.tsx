@@ -104,7 +104,7 @@ const RentModals = () => {
                     subTitle="Enter your address."
                 />
                 <CountrySelected 
-                    
+                    onChange={(value) => setCustomValue("location", value)}
                 />
             </div>
         );

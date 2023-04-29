@@ -28,7 +28,7 @@ const CountrySelected: React.FC<CountrySelectedProps> = ({  value, onChange, }) 
                 isClearable
                 options={getAll()}
                 value={value}
-                // onChange={(value) => onChange(value as CountrySelectedValue)} this is not working i dont know why!!
+                onChange={(value) => onChange(value as CountrySelectedValue)}
                 formatOptionLabel={(option: any) => (
                     <div className="flex flex-row items-center gap-3">
                         <ReactCountryFlag 
