@@ -10,6 +10,7 @@ import CategoryInputs from "../Input/CategoryInputs";
 import { FieldValues, useForm } from "react-hook-form";
 import CountrySelected from "../Input/CountrySelected";
 import dynamic from "next/dynamic";
+import Info from "../Input/Info";
 
 enum STEPS { 
     CATEGORY = 0,
@@ -47,6 +48,9 @@ const RentModals = () => {
 
     const category = watch("category");
     const location = watch("location");
+    const guestCounts = watch("guestCounts");
+    const roomCounts = watch("roomCounts");
+    const bathroomCounts = watch("bathroomCounts");
 
     const Maps = useMemo(() => dynamic(() => import("../Maps"), {
         ssr: false,
@@ -116,6 +120,37 @@ const RentModals = () => {
                 />
                 <Maps 
                     center={location?.latlng}
+                />
+            </div>
+        );
+    };
+
+    if (steps === STEPS.INFO) {
+        bodyContents = (
+            <div className="flex flex-col gap-8">
+                <Headings 
+                    title="What's your place looks like?"
+                    subTitle="We'll use this info to help you create your listing."
+                />
+                <Info 
+                    title="Guest"
+                    subtitle="How many guests can your place accommodate?"
+                    onChange={(value) => setCustomValue("guestCounts", value)}
+                    value={guestCounts}
+                />
+                <hr />
+                <Info 
+                    title="Rooms"
+                    subtitle="How many rooms will you get?"
+                    onChange={(value) => setCustomValue("roomCounts", value)}
+                    value={roomCounts}
+                />
+                <hr />
+                <Info 
+                    title="Bathrooms"
+                    subtitle="How many bathrooms will you get?"
+                    onChange={(value) => setCustomValue("bathroomCounts", value)}
+                    value={bathroomCounts}
                 />
             </div>
         );
