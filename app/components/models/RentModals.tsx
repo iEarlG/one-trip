@@ -7,12 +7,15 @@ import Modals from "./Modals";
 import Headings from "../Headings";
 import { categories } from "../Navbar/Categories";
 import CategoryInputs from "../Input/CategoryInputs";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import CountrySelected from "../Input/CountrySelected";
 import dynamic from "next/dynamic";
 import Info from "../Input/Info";
 import UploadImages from "../Input/UploadImages";
 import Inputs from "../Input/Inputs";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 enum STEPS { 
     CATEGORY = 0,
@@ -25,6 +28,7 @@ enum STEPS {
 
 const RentModals = () => {
     const rentModals = useRentModals();
+    const router = useRouter();
     const [steps, setSteps] = useState(STEPS.CATEGORY);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -74,6 +78,28 @@ const RentModals = () => {
     const onNext = () => {
         setSteps((prev) => prev + 1);
     };
+
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        if (steps !== STEPS.PRICE) {
+            return onNext();
+        }
+        setIsLoading(true);
+
+        axios.post("/api/listing", data)
+            .then(() => {
+                toast.success("Successfully created listing!.");
+                router.refresh();
+                reset();
+                setSteps(STEPS.CATEGORY);
+                rentModals.onClosed();
+            })
+            .catch(() => {
+                toast.error("Server went wrong. Please try again.");
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }
 
     const actionLabel = useMemo(() => {
         if (steps === STEPS.PRICE) {
@@ -230,7 +256,7 @@ const RentModals = () => {
             title="OTH IS YOUR PLACE"
             isOpen={rentModals.isOpen}
             onClose={rentModals.onClosed}
-            onSubmit={onNext}
+            onSubmit={handleSubmit(onSubmit)}
             actionLabel={actionLabel}
             secondaryActionLabel={secondaryActionLabel}
             secondaryAction={steps === STEPS.CATEGORY ? undefined : onBack}
