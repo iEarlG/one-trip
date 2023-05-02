@@ -45,9 +45,9 @@ const RentModals = () => {
             imageSrc: "",
             title: "",
             location: null,
-            guestCounts: 1,
-            roomCounts: 1, 
-            bathroomCounts: 1,
+            guestCount: 1,
+            roomCount: 1, 
+            bathroomCount: 1,
             price: 1,
             // bedCounts: 1,
         }
@@ -55,9 +55,9 @@ const RentModals = () => {
 
     const category = watch("category");
     const location = watch("location");
-    const guestCounts = watch("guestCounts");
-    const roomCounts = watch("roomCounts");
-    const bathroomCounts = watch("bathroomCounts");
+    const guestCount = watch("guestCount");
+    const roomCount = watch("roomCount");
+    const bathroomCount = watch("bathroomCount");
     const imageSrc = watch("imageSrc");
 
     const Maps = useMemo(() => dynamic(() => import("../Maps"), {
@@ -165,22 +165,22 @@ const RentModals = () => {
                 <Info 
                     title="Guest"
                     subtitle="How many guests can your place accommodate?"
-                    onChange={(value) => setCustomValue("guestCounts", value)}
-                    value={guestCounts}
+                    onChange={(value) => setCustomValue("guestCount", value)}
+                    value={guestCount}
                 />
                 <hr />
                 <Info 
                     title="Rooms"
                     subtitle="How many rooms will you get?"
-                    onChange={(value) => setCustomValue("roomCounts", value)}
-                    value={roomCounts}
+                    onChange={(value) => setCustomValue("roomCount", value)}
+                    value={roomCount}
                 />
                 <hr />
                 <Info 
                     title="Bathrooms"
                     subtitle="How many bathrooms will you get?"
-                    onChange={(value) => setCustomValue("bathroomCounts", value)}
-                    value={bathroomCounts}
+                    onChange={(value) => setCustomValue("bathroomCount", value)}
+                    value={bathroomCount}
                 />
             </div>
         );
