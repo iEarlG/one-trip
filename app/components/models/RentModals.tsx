@@ -11,6 +11,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import CountrySelected from "../Input/CountrySelected";
 import dynamic from "next/dynamic";
 import Info from "../Input/Info";
+import UploadImages from "../Input/UploadImages";
 
 enum STEPS { 
     CATEGORY = 0,
@@ -152,6 +153,27 @@ const RentModals = () => {
                     onChange={(value) => setCustomValue("bathroomCounts", value)}
                     value={bathroomCounts}
                 />
+            </div>
+        );
+    };
+
+    if (steps === STEPS.IMAGES) {
+        bodyContents = (
+            <div className="flex flex-col gap-8">
+                <Headings 
+                    title="What's your place looks like? Upload photo for reference."
+                    subTitle="We'll use this info to help you create your listing."
+                />
+                
+                <UploadImages />
+
+                {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
+                    {rentModals.map((item) => (
+                        <div key={item.imageSrc} className="col-span-1">
+                            <img src={item.imageSrc} />
+                        </div>
+                    ))}
+                </div> */}
             </div>
         );
     };
