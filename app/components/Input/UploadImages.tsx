@@ -16,11 +16,11 @@ interface UploadImagesProps {
 
 const UploadImages: React.FC<UploadImagesProps> = ({ onChange, value }) => {
     const handleUploads = useCallback((results: any) => {
-        onChange(results.info.source_url);
+        onChange(results.info.secure_url);
     }, [onChange]);
     return ( 
         <CldUploadWidget
-            uploadPreset="v1bpwrcj"
+            uploadPreset="dqihysvt"
             onUpload={handleUploads}
             options={{
                 maxFiles: 1,

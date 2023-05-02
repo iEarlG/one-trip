@@ -52,6 +52,7 @@ const RentModals = () => {
     const guestCounts = watch("guestCounts");
     const roomCounts = watch("roomCounts");
     const bathroomCounts = watch("bathroomCounts");
+    const imageSrc = watch("imageSrc");
 
     const Maps = useMemo(() => dynamic(() => import("../Maps"), {
         ssr: false,
@@ -165,7 +166,10 @@ const RentModals = () => {
                     subTitle="We'll use this info to help you create your listing."
                 />
                 
-                <UploadImages />
+                <UploadImages 
+                    value={imageSrc}
+                    onChange={(value) => setCustomValue("imageSrc", value)}
+                />
 
                 {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                     {rentModals.map((item) => (
