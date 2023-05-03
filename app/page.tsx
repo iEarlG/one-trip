@@ -1,3 +1,5 @@
+
+import getCurrentUsers from "./actions/getCurrentUsers";
 import getListings from "./actions/getListings";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
@@ -5,6 +7,7 @@ import ListingCards from "./components/Listings/ListingCards";
 
 export default async function Home() {
   const listings = getListings();
+  const currentUsers = await getCurrentUsers();
   
   if ((await listings).length === 0) {
     return (
@@ -20,6 +23,7 @@ export default async function Home() {
             <ListingCards 
               key={listing.id}
               data={listing}
+              currentUsers={currentUsers}
             />
           )
         })}
