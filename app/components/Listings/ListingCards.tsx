@@ -6,13 +6,13 @@ import { format } from "date-fns";
 import Image from "next/image";
 
 import { Listing, Reservation } from "@prisma/client";
-import { SafeUser } from "@/app/types";
+import { SafeListing, SafeUser } from "@/app/types";
 import useCountries from "@/app/hooks/useCountries";
 import HeartBtn from "../HeartBtn";
 import Button from "../Button";
 
 interface ListingCardsProps {
-    data: Listing;
+    data: SafeListing;
     reservation?: Reservation;
     onAction?: (id: string) => void;
     disable?: boolean;
