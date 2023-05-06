@@ -11,7 +11,7 @@ interface ListingHeaderProps {
     id: string;
     title: string;
     locationValue: string;
-    imgSrc: string;
+    imageSrc: string;
     currentUser?: SafeUser | null;
 }
 
@@ -19,7 +19,7 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
     id,
     title,
     locationValue,
-    imgSrc,
+    imageSrc,
     currentUser,
 }) => {
     const { getByValues } = useCountries();
@@ -34,7 +34,7 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
 
             <div className="w-full h-[60vh] relative overflow-hidden rounded-xl">
                 <Image 
-                    src={imgSrc}
+                    src={imageSrc}
                     alt="Image"
                     fill
                     className="object-cover w-full"
