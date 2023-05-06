@@ -1,13 +1,25 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
+import { useRouter } from "next/navigation";
 import { Reservation } from "@prisma/client";
+import axios from "axios";
 
 import { SafeListing, SafeUser } from "@/app/types";
+import { toast } from "react-hot-toast";
 import { categories } from "@/app/components/Navbar/Categories";
 import Container from "@/app/components/Container";
 import ListingHeader from "@/app/components/Listings/ListingHeader";
 import ListingInfo from "@/app/components/Listings/ListingInfo";
+import useLoginModals from "@/app/hooks/useLoginModals";
+import ListingReservations from "@/app/components/Listings/ListingReservations";
+
+const initialDateRange = {
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection",
+};
 
 interface ListingClientsProps {
     reservations?: Reservation[];
@@ -18,12 +30,73 @@ interface ListingClientsProps {
 }
 
 const ListingClients: React.FC<ListingClientsProps> = ({
-    listing, currentUser
+    listing, currentUser, reservations = [],
 }) => {
+    const loginModal = useLoginModals();
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(listing.price);
+    const [rangeDate, setRangeDate] = useState(initialDateRange);
+
     const category = useMemo(() => {
         return categories.find((item) => 
         item.label === listing.category);
     }, [listing.category]);
+
+    const disableDates = useMemo(() => {
+        let dates: Date[] = [];
+
+        reservations.forEach((reservation) => {
+            const dateRange = eachDayOfInterval({
+                start: new Date(reservation.startDate),
+                end: new Date(reservation.endDate),
+            });
+            dates = {...dates, ...dateRange};
+        });
+
+        return dates;
+    }, [reservations]);
+    
+    const onCreateReservation = useCallback(() => {
+        if (!currentUser) { 
+            return loginModal.onOpen();
+        }
+        setIsLoading(true);
+
+        axios.post('/api/reservations', {
+            totalPrice,
+            startDate: rangeDate.startDate,
+            endDate: rangeDate.endDate,
+            listingId: listing?.id,
+        })
+        .then(() => {
+            toast.success('Reserved successfully!');
+            setRangeDate(initialDateRange);
+
+            router.refresh();
+        })
+        .catch(() => {
+            toast.error('Something went wrong!');
+        })
+        .finally(() => {
+            setIsLoading(false);
+        })
+    }, [currentUser, listing?.id, loginModal, totalPrice, router, rangeDate]);
+
+    useEffect(() => {
+      if (rangeDate.startDate && rangeDate.endDate) { 
+        const DaysCount = differenceInCalendarDays(
+            rangeDate.startDate,
+            rangeDate.endDate,
+        );
+        if (DaysCount && listing.price) {
+            setTotalPrice(DaysCount * listing.price);
+        } else { 
+            setTotalPrice(listing.price);
+        }
+      }
+    }, [rangeDate, listing.price]);
+    
 
     return ( 
         <Container>
@@ -47,6 +120,18 @@ const ListingClients: React.FC<ListingClientsProps> = ({
                             bathroomCount={listing.bathroomCount}
                             locationValue={listing.locationValue}
                         />
+
+                        <div className="order-first mb-10 md:order-last md:col-span-3">
+                            <ListingReservations 
+                                price={listing.price}
+                                totalPrice={totalPrice}
+                                onChangeDate={(value) => setRangeDate(value)}
+                                rangeDate={rangeDate}
+                                onSubmit={onCreateReservation}
+                                disable={isLoading}
+                                disabledDates={disableDates}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
