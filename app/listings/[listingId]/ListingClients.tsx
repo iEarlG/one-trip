@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
 import { Reservation } from "@prisma/client";
+import { Range } from "react-date-range";
 import axios from "axios";
 
 import { SafeListing, SafeUser } from "@/app/types";
@@ -36,7 +37,7 @@ const ListingClients: React.FC<ListingClientsProps> = ({
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [totalPrice, setTotalPrice] = useState(listing.price);
-    const [rangeDate, setRangeDate] = useState(initialDateRange);
+    const [rangeDate, setRangeDate] = useState<Range>(initialDateRange);
 
     const category = useMemo(() => {
         return categories.find((item) => 
@@ -86,8 +87,8 @@ const ListingClients: React.FC<ListingClientsProps> = ({
     useEffect(() => {
       if (rangeDate.startDate && rangeDate.endDate) { 
         const DaysCount = differenceInCalendarDays(
-            rangeDate.startDate,
             rangeDate.endDate,
+            rangeDate.startDate,
         );
         if (DaysCount && listing.price) {
             setTotalPrice(DaysCount * listing.price);
