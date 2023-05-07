@@ -3,11 +3,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
-import { Reservation } from "@prisma/client";
 import { Range } from "react-date-range";
 import axios from "axios";
 
-import { SafeListing, SafeUser } from "@/app/types";
+import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import { toast } from "react-hot-toast";
 import { categories } from "@/app/components/Navbar/Categories";
 import Container from "@/app/components/Container";
@@ -23,7 +22,7 @@ const initialDateRange = {
 };
 
 interface ListingClientsProps {
-    reservations?: Reservation[];
+    reservations?: SafeReservation[];
     listing: SafeListing & { 
         user: SafeUser 
     };
@@ -31,10 +30,13 @@ interface ListingClientsProps {
 }
 
 const ListingClients: React.FC<ListingClientsProps> = ({
-    listing, currentUser, reservations = [],
+    listing, 
+    currentUser, 
+    reservations = []
 }) => {
     const loginModal = useLoginModals();
     const router = useRouter();
+
     const [isLoading, setIsLoading] = useState(false);
     const [totalPrice, setTotalPrice] = useState(listing.price);
     const [rangeDate, setRangeDate] = useState<Range>(initialDateRange);
@@ -44,7 +46,7 @@ const ListingClients: React.FC<ListingClientsProps> = ({
         item.label === listing.category);
     }, [listing.category]);
 
-    const disableDates = useMemo(() => {
+    const disabledDates = useMemo(() => {
         let dates: Date[] = [];
 
         reservations.forEach((reservation) => {
@@ -130,7 +132,7 @@ const ListingClients: React.FC<ListingClientsProps> = ({
                                 rangeDate={rangeDate}
                                 onSubmit={onCreateReservation}
                                 disable={isLoading}
-                                disabledDates={disableDates}
+                                disabledDates={disabledDates}
                             />
                         </div>
                     </div>

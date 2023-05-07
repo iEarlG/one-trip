@@ -17,7 +17,7 @@ const CalendarRange: React.FC<CalendarRangeProps> = ({
     onChange
 }) => {
     return ( 
-        <DateRange 
+        <DateRange
             rangeColors={["#0EA5E9"]}
             ranges={[value]}
             date={new Date()}
@@ -27,7 +27,7 @@ const CalendarRange: React.FC<CalendarRangeProps> = ({
             minDate={new Date()}
             disabledDates={disabledDates}
         />
-    );
-}
+        );
+    }
  
 export default CalendarRange;

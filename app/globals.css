@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 html, body, :root { 
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
   height: 100%;
 }
 
